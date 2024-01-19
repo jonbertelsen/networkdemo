@@ -7,6 +7,10 @@ import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 
+/*
+* Purpose of this demo is to show the most basic use of sockets with inspiration from: https://www.baeldung.com/a-guide-to-java-sockets
+* Author: Thomas Hartmann
+ */
 public class SimpleServer {
     protected ServerSocket serverSocket; // protected so that subclasses can access it
     protected Socket clientSocket;

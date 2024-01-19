@@ -1,6 +1,5 @@
 package dk.cphbusiness.demo04FileServer;
 
-import dk.cphbusiness.demo01Simple.SimpleServer;
 import dk.cphbusiness.demo03RequestDataServer.RequestDataServer;
 
 import java.io.BufferedReader;
@@ -10,17 +9,15 @@ import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.HashMap;
-import java.util.Map;
 
+/*
+ * Purpose of this demo is to show how to get the data from the request headers etc.
+ * Author: Thomas Hartmann
+ */
 public class RequestFileServer extends RequestDataServer {
-    /*
-     * Purpose of this demo is to show how to get the data from the request headers etc.
-     */
     public static void main(String[] args) {
         RequestFileServer server = new RequestFileServer();
         server.start(8080);

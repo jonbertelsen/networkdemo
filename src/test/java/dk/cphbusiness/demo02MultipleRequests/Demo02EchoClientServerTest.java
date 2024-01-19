@@ -4,6 +4,10 @@ import org.junit.jupiter.api.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+/*
+ * Purpose of this demo is to show how to start the Echo server and send a message to it from the client (and how to close the connection)
+ * Author: Thomas Hartmann
+ */
 class Demo02EchoClientServerTest {
     private static EchoServer echoServer = new EchoServer();
 

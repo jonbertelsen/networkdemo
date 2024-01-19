@@ -8,6 +8,10 @@ import org.junit.jupiter.api.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+/*
+ * Purpose of this demo is to show how to get a html file from the server.
+ * Author: Thomas Hartmann
+ */
 class Demo04FileServerTest {
     private static RequestFileServer rfs = new RequestFileServer();
 

@@ -7,7 +7,6 @@ import java.io.PrintWriter;
 import java.net.Socket;
 
 public class SimpleClient {
-    // With inspiration from: https://www.baeldung.com/a-guide-to-java-sockets
     private Socket clientSocket;
     private PrintWriter out;
     private BufferedReader in;

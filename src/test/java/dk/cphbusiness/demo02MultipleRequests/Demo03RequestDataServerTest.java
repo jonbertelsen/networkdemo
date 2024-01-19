@@ -6,7 +6,11 @@ import org.junit.jupiter.api.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class Demo03MetaDataClientServerTest {
+/*
+ * Purpose of this demo is to show how to start the RequestData server check that all the data from the request is read by the server.
+ * Author: Thomas Hartmann
+ */
+class Demo03RequestDataServerTest {
     private static RequestDataServer requestDataServer = new RequestDataServer();
 
     @BeforeAll

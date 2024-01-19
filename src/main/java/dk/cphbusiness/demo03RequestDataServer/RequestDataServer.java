@@ -7,14 +7,11 @@ import java.net.ServerSocket;
 import java.util.HashMap;
 import java.util.Map;
 
+/*
+ * Purpose of this demo is to show how to get the data from the request headers etc.
+ * Author: Thomas Hartmann
+ */
 public class RequestDataServer extends SimpleServer {
-    /*
-     * Purpose of this demo is to show how to get the data from the request headers etc.
-     */
-    public static void main(String[] args) {
-        RequestDataServer server = new RequestDataServer();
-        server.start(8080);
-    }
 
     public RequestDTO generateRequestObject(BufferedReader in) { // public because we want to use it in extensions of this class
         String requestLine = null; // GET /path/to/endpoint?queryparam1=9&queryparam2=18 HTTP/1.1

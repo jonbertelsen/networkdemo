@@ -8,6 +8,10 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 
+/*
+* Purpose of this demo is to show how to read the client request and send it back from the server
+* Author: Thomas Hartmann
+**/
 public class EchoServer extends SimpleServer {
     public static void main(String[] args) {
         EchoServer server = new EchoServer();
