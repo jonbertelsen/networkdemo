@@ -9,6 +9,7 @@ import java.net.Socket;
 
 /*
 * Purpose of this demo is to show the most basic use of sockets with inspiration from: https://www.baeldung.com/a-guide-to-java-sockets
+* The server only accepts one client and only one message from the client before closing the connection
 * Author: Thomas Hartmann
  */
 public class SimpleServer {

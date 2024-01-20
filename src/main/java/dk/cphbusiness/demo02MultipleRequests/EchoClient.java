@@ -6,7 +6,7 @@ public class EchoClient extends SimpleClient {
 
         public static void main(String[] args) {
             EchoClient client = new EchoClient();
-            client.startConnection("localhost", 6666);
+            client.startConnection("localhost", 8080);
             String response = client.sendMessage("Hello SimpleServer");
             System.out.println("response: " + response);
             client.stopConnection();

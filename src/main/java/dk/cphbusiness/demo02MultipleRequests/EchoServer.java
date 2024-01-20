@@ -10,6 +10,7 @@ import java.net.ServerSocket;
 
 /*
 * Purpose of this demo is to show how to read the client request and send it back from the server
+* This is a TCP server example (not HTTP, wchich means it is not a web server and cannot work with a browser)
 * Author: Thomas Hartmann
 **/
 public class EchoServer extends SimpleServer {
