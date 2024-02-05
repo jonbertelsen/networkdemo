@@ -2,7 +2,12 @@
 
 Følgende kodeeksempler skal anvendes i forbindelse med netværksugen på 2. semester.
 
-Der er en stigende progression i eksemplerne og demo 01, 0
+Der er en stigende progression i eksemplerne. Her er en oversigt over de enkelte demoer
+og hvad deres formål er:
+
+![Networkdemos](./images/networkdemo.png)
+
+## Demo01
 
 
 Demo to show how to use sockets to create a simple web server and client in Java.
