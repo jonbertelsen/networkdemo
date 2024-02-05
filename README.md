@@ -1,4 +1,10 @@
-# Network Demo for 2. semester
+# Netværksdemoer på 2. semester
+
+Følgende kodeeksempler skal anvendes i forbindelse med netværksugen på 2. semester.
+
+Der er en stigende progression i eksemplerne og demo 01, 0
+
+
 Demo to show how to use sockets to create a simple web server and client in Java.
 Run the unit tests to see how the server and client works.
 - Demos:
