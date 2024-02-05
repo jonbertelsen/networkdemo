@@ -10,7 +10,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * Purpose of this demo is to show how to start the RequestData server check that all the data from the request is read by the server.
  * Author: Thomas Hartmann
  */
-class Demo03RequestDataServerTest {
+class Demo04RequestDataServerTest
+{
 
     private static final int PORT = 9090;
     private static final String IP = "127.0.0.1";

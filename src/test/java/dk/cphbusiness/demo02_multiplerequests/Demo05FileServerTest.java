@@ -10,7 +10,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * Purpose of this demo is to show how to get a html file from the server.
  * Author: Thomas Hartmann and Jon Bertelsen
  */
-class Demo04FileServerTest {
+class Demo05FileServerTest
+{
 
     private static final int PORT = 9090;
     private static final String IP = "127.0.0.1";
