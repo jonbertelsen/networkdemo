@@ -24,9 +24,6 @@ public class RequestFileServer
 
     private static final int PORT = 9090;
 
-    private Socket clientSocket;
-    private PrintWriter out;
-    private BufferedReader in;
     private String response = "";
 
     public static void main(String[] args)
@@ -39,30 +36,42 @@ public class RequestFileServer
     {
         try (ServerSocket serverSocket = new ServerSocket(port))
         {
-            clientSocket = serverSocket.accept(); // blocking call
-            out = new PrintWriter(clientSocket.getOutputStream(), true);
-            in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+            while (true) {
+                try (Socket clientSocket = serverSocket.accept()){
+                    PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);
+                    BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
 
-            // read the request from the client
-            RequestDTO requestDTO = generateRequestObject(in);
-            String requestLine = requestDTO.getRequestLine();
-            String resource = requestLine.split(" ")[1];
+                    // read the request from the client
+                    RequestDTO requestDTO = generateRequestObject(in);
+                    String requestLine = requestDTO.getRequestLine();
+                    String resource = requestLine.split(" ")[1];
 
-            // Get the file from the resource
-            String response = getFile(resource);
+                    System.out.println("Received request: " + requestLine);
+                    // Check for favicon request and handle or skip it
+                    if ("/favicon.ico".equals(resource)) {
+                        // Serve an empty response or skip the request
+                        out.println("HTTP/1.1 204 No Content\r\n\r\n");
+                        continue; // Skip processing further
+                    }
 
-            out.println(response);
-            System.out.println(resource);
+                    String responseHeader = "HTTP/1.1 200 OK" + System.lineSeparator() +
+                            "Date: Mon, 30 August 2024 15:38:34 GMT" + System.lineSeparator() +
+                            "Server: Apache/2.4.1 (Unix)\n" +
+                            "Content-Type: text/html; charset=UTF-8" + System.lineSeparator() +
+                            "Content-Length: 87" + System.lineSeparator() +
+                            "Connection: close" + System.lineSeparator();
 
-            /* TODO: This will wrap the response into a http response
-             * OBS! Need to update unit-test in order to work with http header
-             * String httpResponse = httpResponseWrapper(response);
-             * out.println(httpResponse);
-             */
 
-            // Close the socket
-            stopConnection();
+                    // Get the file from the resource
+                    String responseBody = getFile(resource);
 
+                    out.println(responseHeader + System.lineSeparator() + System.lineSeparator() + responseBody);
+                    System.out.println(resource);
+                    out.close();
+                    in.close();
+                }
+
+            }
         }
         catch (IOException e)
         {
@@ -119,21 +128,6 @@ public class RequestFileServer
         return resource;
     }
 
-    public void stopConnection()
-    {
-        try
-        {
-            System.out.println("Closing down socket ...");
-            in.close();
-            out.close();
-            clientSocket.close();
-        }
-        catch (IOException e)
-        {
-            throw new RuntimeException(e);
-        }
-    }
-
     /* TODO: Copied from RequestDataServer. Should be refactored into a separate class
      *   called "RequestDTO" */
 
@@ -175,7 +169,7 @@ public class RequestFileServer
             // If the request is a POST request, read the body
             try
             {
-                requestBodyData = getRequestBody(requestLine, requestBuilder);
+                requestBodyData = getRequestBody(requestLine, requestBuilder, in);
                 System.out.println("Request body: " + requestBodyData.toString());
             }
             catch (IllegalArgumentException e)
@@ -211,7 +205,7 @@ public class RequestFileServer
         return headers;
     }
 
-    private Map<String, String> getRequestBody(String requestLine, StringBuilder requestBuilder) throws IOException
+    private Map<String, String> getRequestBody(String requestLine, StringBuilder requestBuilder,BufferedReader in ) throws IOException
     {
         if (!(requestLine.contains("POST") || requestLine.contains("PUT") || requestLine.contains("PATCH")))
         {
